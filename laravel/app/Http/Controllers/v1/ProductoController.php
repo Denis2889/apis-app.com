@@ -21,7 +21,7 @@ class ProductoController extends Controller
   }
 
   function obtenerItem($id){
-    $producto = Producto::where("id","=",$id)->with('categoria')->get()->find($id);;
+    $producto = Producto::where("id","=",$id)->with('categoria')->get()->find($id);
 
     $response = new \stdClass();
     $response->success=true;

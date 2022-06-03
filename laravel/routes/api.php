@@ -11,13 +11,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->group(function(){
+/* Route::middleware('auth:api')->group(function(){ */
     Route::get('/productos', [ProductoController::class, 'obtenerLista']);
     Route::get('/productos/{id}', [ProductoController::class, 'obtenerItem']);
     Route::post('/productos', [ProductoController::class, 'store']);
     Route::put('/productos', [ProductoController::class, 'update']);
     Route::patch('/productos', [ProductoController::class, 'patch']);
     Route::delete('/productos/{id}', [ProductoController::class, 'delete']);
+
+    Route::get('/v2/productos', [App\Http\Controllers\v2\ProductoController::class, 'obtenerLista']);
+    Route::get('/v2/productos/{id}', [App\Http\Controllers\v2\ProductoController::class, 'obtenerItem']);
+    Route::post('/v2/productos', [App\Http\Controllers\v2\ProductoController::class, 'store']);
+    Route::put('/v2/productos', [App\Http\Controllers\v2\ProductoController::class, 'update']);
+    Route::patch('/v2/productos', [App\Http\Controllers\v2\ProductoController::class, 'patch']);
+    Route::delete('/v2/productos/{id}', [App\Http\Controllers\v2\ProductoController::class, 'delete']);
     
     Route::get('/categorias', [CategoriaController::class, 'obtenerLista']);
     Route::get('/categorias/{id}', [CategoriaController::class, 'obtenerItem']);
@@ -28,5 +35,5 @@ Route::middleware('auth:api')->group(function(){
     
     Route::post('/users', [UserController::class, 'store']);
     
-});
+/* }); */
 Route::post('/seguridad/login', [SeguridadController::class, 'login']);
